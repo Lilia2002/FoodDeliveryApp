@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "72807884189",
+    "project_id": "fooddeliverya-ceeb4",
+    "storage_bucket": "fooddeliverya-ceeb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72807884189:android:da8b13d0c99275b7acbb74",
+        "android_client_info": {
+          "package_name": "com.example.fragmentex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "72807884189-1ri3j3dspadn3iolc3vl7gj61n00bggh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fragmentex",
+            "certificate_hash": "04b0fcea7f2293e4913c0ea6db187cfa9760d267"
+          }
+        },
+        {
+          "client_id": "72807884189-on9vjcllgi6665a8ndeq5il41ofoujhd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEPmE7TmqWx4XfYVjizilU-ZeRia30Q7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "72807884189-on9vjcllgi6665a8ndeq5il41ofoujhd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
