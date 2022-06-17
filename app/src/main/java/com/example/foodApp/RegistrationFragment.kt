@@ -72,6 +72,4 @@ class RegistrationFragment : Fragment() {
             .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Error adding document", e) }
     }
 
-
-
 }
