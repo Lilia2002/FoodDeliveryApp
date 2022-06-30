@@ -21,7 +21,7 @@ class OrderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-binding = FragmentOrderBinding.inflate(inflater)
+        binding = FragmentOrderBinding.inflate(inflater)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

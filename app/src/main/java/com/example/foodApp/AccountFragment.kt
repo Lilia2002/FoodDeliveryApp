@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.foodApp.databinding.FragmentAccountBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserInfo
@@ -41,6 +42,7 @@ class AccountFragment : Fragment() {
                             binding.accountEmail.text=document.get("email").toString()
 
 
+
                         }
                     }
                 }
@@ -51,8 +53,18 @@ class AccountFragment : Fragment() {
                         exception
                     )
                 }
-        }
+//            try{
+//                Glide.with(this@AccountFragment).load(profileImage).placeholder(R.drawable.user_female).into(binding.profileUserIcon)
+//            }
+//            catch (e: Exception){
+//
+//            }
+
     }
+
+
+
+}
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         readDataFirestore()

@@ -32,8 +32,6 @@ class LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         firebaseAuth = FirebaseAuth.getInstance()
 
-
-
         binding.tvSignup.setOnClickListener {
             findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToRegistrationFragment())
         }

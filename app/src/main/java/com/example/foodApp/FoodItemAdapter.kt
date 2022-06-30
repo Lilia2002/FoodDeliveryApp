@@ -1,6 +1,6 @@
 package com.example.foodApp
 
-import android.graphics.ColorSpace
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,20 +9,18 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodApp.DataList.foodArrayList
 import com.squareup.picasso.Picasso
-import java.util.*
 import kotlin.collections.ArrayList
 
-class FoodItemAdapter(private val menuList: ArrayList<ModelMenu>) :
-    RecyclerView.Adapter<FoodItemAdapter.MyViewHolder>(),Filterable {
+class FoodItemAdapter(private var menuList: ArrayList<ModelMenu>) :
+    RecyclerView.Adapter<FoodItemAdapter.MyViewHolder>() {
 
     var onItemClick:((ModelMenu)-> Unit)?=null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FoodItemAdapter.MyViewHolder {
+    ): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.item_list_menu,
             parent, false
@@ -30,29 +28,37 @@ class FoodItemAdapter(private val menuList: ArrayList<ModelMenu>) :
         return MyViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: FoodItemAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val food: ModelMenu = menuList[position]
         holder.itemName.text = food.itemName
         holder.price.text = food.price.toString()
 //        holder.quantity.text = food.quantity.toString()
         holder.star.text = food.star.toString()
         Picasso.get().load(food.image).into(holder.itemImage)
+
         holder.itemQuantityIncreaseIV.setOnClickListener{
             onItemClick?.invoke(food)
-
-
+        }
+        var n =0
+        holder.decrease.setOnClickListener {
+            if(n!=0)
+           n--
+            holder.itemQuantity.text=n.toString()
+            onItemClick?.invoke(food)
+        }
+        holder.itemQuantityIncreaseIV.setOnClickListener {
+            n++
+          holder.itemQuantity.text=n.toString()
         }
 
-
+        food.quantity = n.toString()
     }
+    override fun getItemCount(): Int=menuList.size
 
-    override fun getItemCount(): Int {
-        return menuList.size
-        fun filterList(filteredList: ArrayList<ModelMenu>) {
-            menuList = filteredList
-            notifyDataSetChanged()
-        }
-
+    fun updateItems(arrayList: java.util.ArrayList<ModelMenu>) {
+        menuList.clear()
+        menuList.addAll(arrayList)
+        notifyDataSetChanged()
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -63,66 +69,7 @@ class FoodItemAdapter(private val menuList: ArrayList<ModelMenu>) :
         val itemImage = itemView.findViewById<ImageView>(R.id.item_image)
         val itemQuantityIncreaseIV: ImageView =
             itemView.findViewById(R.id.increase_item_quantity_iv)
-
+        val decrease:ImageView =itemView.findViewById(R.id.decrease_item_quantity_iv)
+        val itemQuantity= itemView.findViewById<TextView>(R.id.item_quantity_tv)
     }
-
-//    private val foodFilter = object : Filter() {
-//        override fun performFiltering(constraint: CharSequence?): FilterResults {
-//            val filteredList: ArrayList<ModelMenu> = ArrayList()
-//            if (constraint == null || constraint.isEmpty()) {
-//                menuList.let { filteredList.addAll(it) }
-//            } else {
-//                val query = constraint.toString().trim().toLowerCase()
-//                menuList.forEach {
-//                    if (it.itemName?.toLowerCase(Locale.ROOT)!!.contains(query)) {
-//                        filteredList.add(it)
-//                    }
-//                }
-//            }
-//            val results = FilterResults()
-//            results.values = filteredList
-//            return results
-//        }
-//
-//        override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//            if (results?.values is ArrayList<*>) {
-//                menuList.clear()
-//                menuList.addAll(results.values as ArrayList<ModelMenu>)
-//                notifyDataSetChanged()
-//            }
-//        }
-//    }
-// override fun getFilter(): Filter {
-//        return foodFilter
-//    }
-
-    override fun getFilter(): Filter {
-        return searchFilter;
-    }
-    private val searchFilter = object : Filter() {
-        override fun performFiltering(constraint: CharSequence?): FilterResults {
-            val filteredList = ArrayList<ModelMenu>()
-            if (constraint!!.isEmpty()) {
-                filteredList.addAll(foodArrayList)
-            } else {
-                val filterPattern = constraint.toString().toLowerCase(Locale.ROOT).trim()
-                for (item in foodArrayList) {
-                    if (item.itemName.toLowerCase(Locale.ROOT).contains(filterPattern)) {
-                        filteredList.add(item)
-                    }
-
-                }
-            }
-            val results = FilterResults()
-            results.values = filteredList
-            return results
-        }
-
-        override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-            menuList.clear()
-           menuList.addAll(results!!.values as ArrayList<ModelMenu>)
-            notifyDataSetChanged()
-        }
-    }
-
 }

@@ -20,6 +20,7 @@ class OrderAdapter(
             Picasso.get().load(modelMenu.image).into(binding.imgItemImage)
             binding.itemPrice.text = modelMenu.price
             binding.itemStars.text = modelMenu.star
+            binding.itemQuantity.text = modelMenu.quantity
 
         }
     }

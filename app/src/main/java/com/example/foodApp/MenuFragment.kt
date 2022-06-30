@@ -1,33 +1,23 @@
 package com.example.foodApp
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.SearchView
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.*
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlin.collections.contains as contains
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MenuFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var foodArrayList: MutableList<ModelMenu>
     private lateinit var myAdapter: FoodItemAdapter
-    private lateinit var db: FirebaseFirestore
     private lateinit var searchBox: SearchView
-
+    lateinit var dataList: ArrayList<ModelMenu>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,22 +25,18 @@ class MenuFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_menu, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.items_recycler_view)
         searchBox = view.findViewById(R.id.searchView)
+        dataList = DataList.foodArrayList as ArrayList<ModelMenu>
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.setHasFixedSize(true)
-        foodArrayList = mutableListOf<ModelMenu>()
-        myAdapter = FoodItemAdapter(foodArrayList as ArrayList<ModelMenu>)
-        recyclerView.adapter = myAdapter
 
-//        EventChangeListener()
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        myAdapter = FoodItemAdapter(DataList.foodArrayList as ArrayList<ModelMenu>)
+        myAdapter = FoodItemAdapter(ArrayList())
         recyclerView.adapter = myAdapter
-        myAdapter.notifyDataSetChanged()
-        myAdapter.onItemClick={
+        myAdapter.updateItems(dataList)
+        myAdapter.onItemClick = {
             DataList.ordersList.add(
                 ModelMenu(
                     it.image,
@@ -58,61 +44,43 @@ class MenuFragment : Fragment() {
                     it.price,
                     it.quantity,
                     it.star
-            )
+                )
             )
         }
         searchBox.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                myAdapter.filter.filter(p0)
-                return false
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchFilter.filter(newText)
+                return true
             }
         })
     }
-//        searchBox.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-//            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                myAdapter.getFilter().filter(query)
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                myAdapter.getFilter().filter(newText);
-//                return false
-//            }
-//        })
 
-    private fun EventChangeListener() {
-        db = FirebaseFirestore.getInstance()
-        db.collection("food").orderBy("itemName.Query.Direction.ASCENDING")
-            .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                override fun onEvent(
-                    value: QuerySnapshot?,
-                    error: FirebaseFirestoreException?
-                ) {
-
-                    if (error != null) {
-                        Log.e("Firestore Error", error.message.toString())
-                        return
-
+    private val searchFilter = object : Filter() {
+        override fun performFiltering(constraint: CharSequence?): FilterResults {
+            val filteredList = ArrayList<ModelMenu>()
+            if (constraint!!.isEmpty()) {
+                filteredList.addAll(dataList)
+            } else {
+                val filterPattern = constraint.toString().toLowerCase(Locale.ROOT).trim()
+                for (item in dataList) {
+                    if (item.itemName.toLowerCase(Locale.ROOT).contains(filterPattern)) {
+                        filteredList.add(item)
                     }
-                    for (dc: DocumentChange in value?.documentChanges!!) {
-                        if (dc.type == DocumentChange.Type.ADDED) {
-//                        foodArrayList.add(dc.document.toObject(ModelMenu::class.java))
-
-
-                        }
-                    }
-                    myAdapter.notifyDataSetChanged()
                 }
-            })
-
-
+            }
+            val results = FilterResults()
+            results.values = filteredList
+            return results
+        }
+        @SuppressLint("NotifyDataSetChanged")
+        override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+            myAdapter.updateItems(results!!.values as ArrayList<ModelMenu>)
+        }
     }
-
 }
 
 

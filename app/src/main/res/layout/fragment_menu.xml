@@ -75,10 +75,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
-                                android:gravity="center_horizontal"
-                                android:onClick="showTagItems"
-                                android:clickable="true"
-                                android:focusable="true">
+                                android:gravity="center_horizontal">
 
                                 <ImageView
                                     android:layout_width="53dp"
@@ -102,8 +99,7 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:onClick="showTagItems"
-                                android:clickable="true"
+                                android:clickable="false"
                                 android:focusable="true">
 
                                 <ImageView
@@ -127,8 +123,7 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:onClick="showTagItems"
-                                android:clickable="true"
+                                android:clickable="false"
                                 android:focusable="true">
 
                                 <ImageView
@@ -152,8 +147,7 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:onClick="showTagItems"
-                                android:clickable="true"
+                                android:clickable="false"
                                 android:focusable="true">
 
                                 <ImageView
@@ -177,8 +171,7 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:onClick="showTagItems"
-                                android:clickable="true"
+                                android:clickable="false"
                                 android:focusable="true">
 
                                 <ImageView
@@ -203,7 +196,6 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:onClick="showTagItems"
                                 android:clickable="true"
                                 android:focusable="true">
 
@@ -228,7 +220,6 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:onClick="showTagItems"
                                 android:clickable="true"
                                 android:focusable="true">
 
@@ -253,7 +244,6 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:onClick="showTagItems"
                                 android:clickable="true"
                                 android:focusable="true">
 
