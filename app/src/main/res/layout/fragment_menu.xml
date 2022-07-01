@@ -99,7 +99,8 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:clickable="false"
+                                android:onClick="showTagItems"
+                                android:clickable="true"
                                 android:focusable="true">
 
                                 <ImageView
@@ -123,7 +124,8 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:clickable="false"
+                                android:onClick="showTagItems"
+                                android:clickable="true"
                                 android:focusable="true">
 
                                 <ImageView
@@ -147,7 +149,8 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:clickable="false"
+                                android:onClick="showTagItems"
+                                android:clickable="true"
                                 android:focusable="true">
 
                                 <ImageView
@@ -171,7 +174,8 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
-                                android:clickable="false"
+                                android:onClick="showTagItems"
+                                android:clickable="true"
                                 android:focusable="true">
 
                                 <ImageView
@@ -180,6 +184,7 @@
                                     android:src="@drawable/drink" />
 
                                 <TextView
+                                    android:id="@+id/drinks"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -196,6 +201,7 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
+                                android:onClick="showTagItems"
                                 android:clickable="true"
                                 android:focusable="true">
 
@@ -220,6 +226,7 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
+                                android:onClick="showTagItems"
                                 android:clickable="true"
                                 android:focusable="true">
 
@@ -244,6 +251,7 @@
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center_horizontal"
+                                android:onClick="showTagItems"
                                 android:clickable="true"
                                 android:focusable="true">
 
