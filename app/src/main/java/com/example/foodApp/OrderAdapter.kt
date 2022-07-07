@@ -21,7 +21,6 @@ class OrderAdapter(
             binding.itemPrice.text = modelMenu.price
             binding.itemStars.text = modelMenu.star
             binding.itemQuantity.text = modelMenu.quantity
-
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = OrderViewHolder(

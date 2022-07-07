@@ -63,11 +63,12 @@ class RegistrationFragment : Fragment() {
         val user = hashMapOf(
             "name" to binding.nameEt.text.toString(),
             "email" to binding.emailEt.text.toString(),
-            "idUser" to firebaseAuth.uid.toString()
+            "idUser" to firebaseAuth.uid.toString(),
+             "imageURL" to ""
         )
 
-        db.collection("users")
-            .add(user)
+        db.collection("users").document(FirebaseAuth.getInstance().currentUser?.uid.toString())
+            .set(user)
             .addOnSuccessListener { Log.d(ContentValues.TAG, "DocumentSnapshot written with ID: ") }
             .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Error adding document", e) }
     }

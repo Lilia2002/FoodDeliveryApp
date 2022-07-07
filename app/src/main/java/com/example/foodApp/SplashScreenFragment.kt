@@ -51,7 +51,13 @@ class SplashScreenFragment : Fragment() {
             }
 
 
-    }
+
+                .addOnFailureListener { exception ->
+                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                }
+
+        }
+
 
     private suspend fun timer() {
         delay(3000)

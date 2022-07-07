@@ -71,22 +71,26 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:id="@+id/btn_pizza"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
                                 android:orientation="vertical"
+                                android:onClick="showTagItems"
+                                android:clickable="true"
+                                android:focusable="true"
                                 android:gravity="center_horizontal">
 
                                 <ImageView
                                     android:layout_width="53dp"
                                     android:layout_height="53dp"
-                                    android:src="@drawable/burger" />
+                                    android:src="@drawable/pizza" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="Burger"
+                                    android:text="Pizza"
                                     android:textSize="12sp"
                                     android:fontFamily="@font/montserrat_semi_bold"/>
 
@@ -94,6 +98,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/btn_fri"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
@@ -112,13 +117,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="Fri"
+                                    android:text="Garnish"
                                     android:textSize="12sp"
                                     android:fontFamily="@font/montserrat_semi_bold"/>
 
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/btn_burger"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
@@ -131,19 +137,20 @@
                                 <ImageView
                                     android:layout_width="53dp"
                                     android:layout_height="53dp"
-                                    android:src="@drawable/pizza" />
+                                    android:src="@drawable/burger" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="Pizza"
+                                    android:text="Burger"
                                     android:textSize="12sp"
                                     android:fontFamily="@font/montserrat_semi_bold"/>
 
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/btn_chicken"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
@@ -157,7 +164,6 @@
                                     android:layout_width="53dp"
                                     android:layout_height="53dp"
                                     android:src="@drawable/chicken" />
-
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -169,6 +175,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/btn_drinks"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
@@ -184,7 +191,6 @@
                                     android:src="@drawable/drink" />
 
                                 <TextView
-                                    android:id="@+id/drinks"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -196,6 +202,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/btn_salad"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
@@ -221,6 +228,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/btn_soup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
@@ -246,6 +254,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/btn_cake"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
@@ -264,10 +273,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="Cake"
+                                    android:text="Dessert"
                                     android:textSize="12sp"
                                     android:fontFamily="@font/montserrat_semi_bold"/>
-
                             </LinearLayout>
 
                         </LinearLayout>
@@ -294,6 +302,17 @@
                     android:text="All Food here"
                     android:fontFamily="@font/montserrat_semi_bold"
                     android:textSize="12sp"/>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/show_all_items_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Show all"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:minHeight="0dp"
+                    android:checked="false" />
 
 
             </LinearLayout>
@@ -324,6 +343,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
